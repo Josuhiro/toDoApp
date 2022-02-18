@@ -1,0 +1,9 @@
+<h3>Edytuj</h3>
+
+<form type='submit' method="POST" action="">
+{% csrf_token %}
+    {{ form.title }}
+    {{ form.content}}
+    {{ form.completed }}
+    <input type="submit" value="Edytuj">
+</form>
