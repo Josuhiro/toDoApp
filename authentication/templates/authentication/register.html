@@ -1,0 +1,8 @@
+<h3>rejestracja</h3>
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.username }}
+    {{ form.password1 }}
+    {{ form.password2 }}
+    <input class="btn login_btn" type="submit" value="Zarejestruj się">
+</form>

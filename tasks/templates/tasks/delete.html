@@ -1,0 +1,9 @@
+<div>
+    <p>Na pewno usunąć {{ task.title }}?</p>
+    <form action="{% url 'delete' task.id %}" method="POST">
+        {% csrf_token %}
+        <a class="btn btn-warning" href="{% url 'index' %}">Powrót</a>
+        <input class="btn btn-danger" type="submit" name="Confirm" value="Usuń">
+    </form>
+
+</div>

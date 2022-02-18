@@ -1,0 +1,10 @@
+<h3>Logowanie</h3>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="username" placeholder="Nazwa użytkownika" class="form-control">
+    <input type="password" name="password" placeholder="Hasło" class="form-control">
+    <input class="btn login_btn" type="submit" value="Zaloguj się">
+
+</form>
