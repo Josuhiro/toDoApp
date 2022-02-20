@@ -1,34 +1,79 @@
 <!doctype html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <title>Lista zadań</title>
 </head>
 <body>
-<a href="{% url 'logout' %}"> Wyloguj</a>
-<form method="POST" action="/">
-    {% csrf_token %}
-    Tytuł:{{ form.title }} Treść:{{ form.content }}
-    <input type="submit" value="Dodaj">
-</form>
 
-{% for task in tasks %}
-    <div>
-    {% if task.completed %}
-        <strike><p>{{ task.title }}</p></strike>
-        <strike><p>{{ task.content }}</p></strike>
-        {% else %}
-        <p>{{ task.title }}</p>
-        <p>{{ task.content }}</p>
-        {% endif %}
-        <p>{{ task.date }}</p>
-        <a href="{% url 'update' task.id %}">Edytuj</a>
-        <a href="{% url 'delete' task.id %}">Usuń</a>
+
+<div class="hero is-success is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="box">
+                        <div class="buttons is-right">
+                            <a href="{% url 'logout' %}" class="button is-danger"> Wyloguj</a>
+                        </div>
+                        <label class="label has-text-centered is-size-2">
+                            Dodaj zadanie
+                        </label>
+                        <form method="post">
+                            <div>
+                                {% csrf_token %}
+                                <label class="label">
+                                    Tytuł
+                                </label>
+                                <input type="text" name="title" class="input" {{ form.title.istitle }}>
+                                <label class="label">
+                                    Treść
+                                </label>
+                                <input type="text" name="content" class="input" {{ form.content.istitle }}>
+                            </div>
+                            <br>
+                            <div class="buttons is-right">
+                                <button class="button is-primary" type="submit">Dodaj</button>
+                            </div>
+                        </form>
+                        {#                        <form method="GET">#}
+                        {#                            <p>Tytuł</p>{{ myFilter.form.title }}#}
+                        {#                            <input type="submit" value="Szukaj">#}
+                        {#                            <p>Treść</p>{{ myFilter.form.content }}#}
+                        {#                            <input type="submit" value="Szukaj">#}
+                        {#                        </form>#}
+                        {% for task in tasks %}
+                            <br>
+                            <div class="has-background-light box">
+                                {% if task.completed %}
+                                    <strike><p class="has-text-centered is-size-3">{{ task.title }}</p></strike>
+                                    <br>
+                                    <strike><p>{{ task.content }}</p></strike>
+
+                                {% else %}
+                                    <p class="has-text-centered is-size-3">{{ task.title }}</p>
+                                    <br>
+                                    <p>{{ task.content }}</p>
+
+                                {% endif %}
+                                <p>{{ task.date }}</p>
+                                <br>
+                                <a class="button is-info" href="{% url 'update' task.id %}">
+                                    Edytuj</a>
+                                <a class="button is-danger is-pulled-right" href="{% url 'delete' task.id %}">
+                                    Usuń</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-
-{% endfor %}
+</div>
 </body>
 </html>

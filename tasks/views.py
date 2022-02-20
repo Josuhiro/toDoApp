@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
 from .forms import *
+from .filters import TaskFilter
 
 
 def get_referer(request):
@@ -16,11 +17,13 @@ def assignUser(model, request):
     obj.user = request.user
     obj.save()
 
+
 @login_required(login_url='login')
 def index(request):
-    tasks = Task.objects.filter(user=request.user)
+    tasks = Task.objects.filter(user=request.user).order_by('-date')
     form = TaskForm()
-
+    myFilter = TaskFilter(request.GET, queryset=tasks)
+    tasks = myFilter.qs
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -28,7 +31,7 @@ def index(request):
 
             assignUser(Task, request)
         return redirect('/')
-    context = {'tasks': tasks, 'form': form}
+    context = {'tasks': tasks, 'form': form, 'myFilter':myFilter}
     return render(request, 'tasks/tasks.html', context)
 
 

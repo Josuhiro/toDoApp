@@ -1,10 +1,50 @@
-<h3>Logowanie</h3>
-
-<form method="POST">
-    {% csrf_token %}
-
-    <input type="text" name="username" placeholder="Nazwa użytkownika" class="form-control">
-    <input type="password" name="password" placeholder="Hasło" class="form-control">
-    <input class="btn login_btn" type="submit" value="Zaloguj się">
-
-</form>
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Logowanie</title>
+</head>
+<body>
+<div class="hero is-success is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-3">
+                    <form method="post" class="box">
+                        {% csrf_token %}
+                        <div class="field">
+                            <label class="label">
+                                Login
+                            </label>
+                            <div class="control has-icons-left">
+                                <input type="text" name="username" class="input" placeholder="Wpisz login">
+                                <span class="icon is-small is-left">
+                                       <i class="fa-solid fa-user"></i>
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">
+                                Hasło
+                            </label>
+                            <div class="control has-icons-left">
+                                <input type="password" name="password" class="input" placeholder="Wpisz hasło">
+                                <span class="icon is-small is-left">
+                                       <i class="fa-solid fa-lock"></i>
+                                    </span>
+                            </div>
+                        </div>
+                            <a class="button is-info" href="{% url 'register' %}"> Zarejestruj</a>
+                            <button class="button is-success is-pulled-right" type="submit">Zaloguj</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

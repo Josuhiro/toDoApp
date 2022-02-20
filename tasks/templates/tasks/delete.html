@@ -1,9 +1,44 @@
-<div>
-    <p>Na pewno usunąć {{ task.title }}?</p>
-    <form action="{% url 'delete' task.id %}" method="POST">
-        {% csrf_token %}
-        <a class="btn btn-warning" href="{% url 'index' %}">Powrót</a>
-        <input class="btn btn-danger" type="submit" name="Confirm" value="Usuń">
-    </form>
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Usuń</title>
+</head>
+<body>
+<div class="hero is-success is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-3">
+                    <div class="box">
+                        <label class="label">Na pewno usunąć {{ task.title }}?</label>
+                        <br>
+                        <form action="{% url 'delete' task.id %}" method="POST">
+                            {% csrf_token %}
+                            <a class="button is-info" href="{% url 'index'%}">
+                                Powrót</a>
 
+                            <input class="button is-danger is-pulled-right" type="submit" name="Confirm" value="Usuń">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+{#<div>#}
+{#    <p>Na pewno usunąć {{ task.title }}?</p>#}
+{#    <form action="{% url 'delete' task.id %}" method="POST">#}
+{#        {% csrf_token %}#}
+{#        <a class="btn btn-warning" href="{% url 'index' %}">Powrót</a>#}
+{#        <input class="btn btn-danger" type="submit" name="Confirm" value="Usuń">#}
+{#    </form>#}
+{##}
+{#</div>#}
+</body>

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tasks.apps.TasksConfig',
     'authentication.apps.AuthenticationConfig',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
